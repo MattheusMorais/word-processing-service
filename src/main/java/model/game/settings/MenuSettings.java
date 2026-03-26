@@ -15,8 +15,8 @@ public class MenuSettings {
     }
 
     public static void isOptionValid(int OPTION) {
-        if (OPTION != 1 && OPTION != 2 && OPTION != 3 && OPTION != 4 ) {
-            throw new ValidationException("Opção Inválida! Digite 1, 2, 3 ou 4.");
+        if (OPTION != 1 && OPTION != 2 && OPTION != 3 && OPTION != 4  && OPTION != 5) {
+            throw new ValidationException("Opção Inválida! Digite 1, 2, 3, 4 ou 5.");
         }
     }
 
