@@ -11,12 +11,6 @@ public class GameResults {
 		this.hits = 0;
 		this.misses = 0;
 	}
-
-	public GameResults(int hits, int misses) {
-		this.hits = hits;
-		this.misses = misses;
-	}
-
 	public GameResults(String playerName, Integer hits, Integer misses, Integer score, String timeStampFormatted) {
 		this.playerName = playerName;
 		this.hits = hits;
@@ -25,21 +19,27 @@ public class GameResults {
 		this.timeStampFormatted = timeStampFormatted;
 	}
 
+	public String getPlayerName() { return playerName; }
+
 	public Integer getHits() {
 		return hits;
 	}
+
+	public Integer getMisses() { return misses; }
+
+	public Integer getScore() { return score; }
+
+	public String getTimeStampFormatted() { return timeStampFormatted; }
 
 	public void incrementHits(int hits) {
 		this.hits += hits;
 	}
 
-	public Integer getMisses() { return misses; }
-
 	public void incrementMisses(int misses) {
 		this.misses += misses;
 	}
 
-	public Integer getScore() {
+	public Integer calculateScore() {
 		return (200 * hits) + (-100 * misses);
 	}
 
@@ -50,5 +50,17 @@ public class GameResults {
 				", Erros = " + misses +
 				", Pontuação = " + score +
 				", Horário = " + timeStampFormatted;
+	}
+
+	public void setPlayerName(String value) {
+		this.playerName = value;
+	}
+
+	public void setTimeStampFormatted(String value) {
+		this.timeStampFormatted = value;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 }

@@ -1,23 +1,27 @@
 package model.game.mechanics;
 
 import model.game.results.GameResults;
-import model.game.settings.MenuSettings;
 import model.utils.handlers.InputHandler;
 import model.words.WordBank;
 import model.game.shufflers.Shuffler;
 import model.game.shufflers.ShufflerFactory;
 
-public abstract class BaseMechanic implements GameMechanic {
-	GameResults currentGameResults = new GameResults();
+public class BaseMechanic implements GameMechanic {
+	int difficulty;
 
+	public BaseMechanic(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	GameResults currentGameResults = new GameResults();
 	@Override
-	public GameResults play(final MenuSettings settings) {
+	public GameResults play() {
 		WordBank bank = new WordBank();
 
 		System.out.println("*** OBS: Digite 0 a qualquer momento para Finalizar o Jogo. ***");
 		while (true) {
 			String originalWord = bank.returnWord();
-			Shuffler shuffler = ShufflerFactory.createShuffler(settings);
+			Shuffler shuffler = ShufflerFactory.createShuffler(difficulty);
 
 			String scrambledWord = shuffler.shuffler(originalWord);
 			System.out.println("Palavra embaralhada: " + scrambledWord);
@@ -33,6 +37,14 @@ public abstract class BaseMechanic implements GameMechanic {
 		}
 		return currentGameResults;
 	}
-	protected abstract void processAnswer(String input, String originalWord);
+
+	@Override
+	public final void processAnswer(String guess, String originalWord) {
+		if (guess.equals(originalWord)) {
+			currentGameResults.incrementHits(1);
+		} else {
+			currentGameResults.incrementMisses(1);
+		}
+	}
 
 }

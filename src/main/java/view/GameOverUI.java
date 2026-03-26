@@ -1,10 +1,10 @@
 package view;
 
-import model.dao.GameResultsDAO;
+import model.game.results.GameResults;
 
 public class GameOverUI {
 
-    public static void gameOverUI(GameResultsDAO gameResultsDAO) {
-        System.out.println("Resultado do jogo: ");
+    public static void gameOverUI(GameResults gameResults) {
+        System.out.println("Resultado do jogo: \n" + gameResults);
     }
 }

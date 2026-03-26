@@ -4,7 +4,6 @@ import controller.GameController;
 import model.dao.GameResultsDAO;
 import model.utils.database.DatabaseConnection;
 import model.utils.handlers.InputHandler;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -19,7 +18,7 @@ public class Main {
 			System.out.println("Conexão aberta com sucesso!");
 			GameResultsDAO gameResultsDAO = new GameResultsDAO(conn);
 
-			GameController gameController = new GameController(gameResultsDAO, conn);
+			GameController gameController = new GameController(gameResultsDAO);
 			gameController.startGame();
 
 			InputHandler.closeScanner();

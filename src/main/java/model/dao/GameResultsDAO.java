@@ -14,15 +14,15 @@ public class GameResultsDAO {
         this.conn = conn;
     }
 
-    public void insert(GameResults results, String playerName)  {
+    public void insert(GameResults results)  {
 
         try (PreparedStatement ps = conn.prepareStatement(
                 "INSERT INTO results (playername, hits, misses, score) VALUES (?,?,?,?)"
         )) {
-            ps.setString(1, playerName);
+            ps.setString(1, results.getPlayerName());
             ps.setInt(2, results.getHits());
             ps.setInt(3, results.getMisses());
-            ps.setInt(4, results.getScore());
+            ps.setInt(4, results.calculateScore());
 
             ps.executeUpdate();
         } catch (SQLException e) {

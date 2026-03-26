@@ -34,10 +34,6 @@ public class MenuSettings {
         }
     }
 
-    public int getOPTION() {
-        return OPTION;
-    }
-
     public String getPLAYERNAME() {
         return PLAYERNAME;
     }

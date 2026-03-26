@@ -2,24 +2,22 @@ package controller;
 
 import model.dao.GameResultsDAO;
 import model.exceptions.ValidationException;
+import model.game.mechanics.BaseMechanic;
 import model.game.results.GameResults;
 import model.game.settings.MenuSettings;
 import model.utils.handlers.InputHandler;
 import model.game.mechanics.GameMechanic;
-import model.game.mechanics.GameMechanicFactory;
+import model.utils.handlers.LocalDateTimeHandler;
 import view.GameOverUI;
 import view.MenuUI;
-import java.sql.Connection;
 import java.util.InputMismatchException;
 import java.util.List;
 
 public class GameController {
     private final GameResultsDAO gameResultsDAO;
-    private final Connection conn;
 
-    public GameController(GameResultsDAO gameResultsDAO, Connection conn) {
+    public GameController(GameResultsDAO gameResultsDAO) {
         this.gameResultsDAO = gameResultsDAO;
-        this.conn = conn;
 
     }
 
@@ -106,22 +104,34 @@ public class GameController {
     }
 
     public void createGameMechanic(MenuSettings menuSettings) {
-        GameMechanic gameMechanic = GameMechanicFactory.createMechanic();
-        playGame(gameMechanic, menuSettings);
+        String playerName = menuSettings.getPLAYERNAME();
+        int difficulty = menuSettings.getDIFFICULTY();
+
+        GameMechanic gameMechanic = new BaseMechanic(difficulty);
+        playGame(gameMechanic, playerName);
     }
 
-    public void playGame(GameMechanic gameMechanic, MenuSettings menuSettings){
-        GameResults gameResults = gameMechanic.play(menuSettings);
-        String playerName = menuSettings.getPLAYERNAME();
+    public void playGame(GameMechanic gameMechanic, String playerName){
+        GameResults gameResults = gameMechanic.play();
         gameOver(gameResults, playerName);
     }
 
     public void gameOver(GameResults gameResults, String playerName) {
-        if (gameResults.getHits() == 0 && gameResults.getMisses() == 0 && gameResults.getScore() == 0) {
+        if (gameResults.getHits() == 0 && gameResults.getMisses() == 0 && gameResults.calculateScore() == 0) {
             return;
         }
 
-        this.gameResultsDAO.insert(gameResults, playerName);
-        GameOverUI.gameOverUI(gameResults, playerName);
+        if (gameResults.getPlayerName() == null && gameResults.getTimeStampFormatted() == null && gameResults.getScore() == null) {
+            gameResults.setPlayerName(playerName);
+
+            String timeFormatted = LocalDateTimeHandler.getNow();
+            gameResults.setTimeStampFormatted(timeFormatted);
+
+            int score = gameResults.calculateScore();
+            gameResults.setScore(score);
+        }
+
+        gameResultsDAO.insert(gameResults);
+        GameOverUI.gameOverUI(gameResults);
     }
 }
