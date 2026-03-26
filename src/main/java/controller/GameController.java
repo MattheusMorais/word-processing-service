@@ -9,10 +9,19 @@ import model.game.mechanics.GameMechanic;
 import model.game.mechanics.GameMechanicFactory;
 import view.GameOverUI;
 import view.MenuUI;
-
+import java.sql.Connection;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class GameController {
+    private final GameResultsDAO gameResultsDAO;
+    private final Connection conn;
+
+    public GameController(GameResultsDAO gameResultsDAO, Connection conn) {
+        this.gameResultsDAO = gameResultsDAO;
+        this.conn = conn;
+
+    }
 
     public void startGame() {
         boolean running = true;
@@ -37,6 +46,23 @@ public class GameController {
             }
 
             if (mainOption == 2) {
+                List<GameResults> ranking = gameResultsDAO.showRanking();
+                if (ranking.isEmpty()) {
+                    System.out.println("Não há pontuações, jogue uma partida :)");
+                }
+                for (GameResults result : ranking) {
+                    System.out.println(result);
+                }
+                continue;
+            }
+
+            if (mainOption == 3) {
+                gameResultsDAO.softDeleteScores();
+                System.out.println("Ranking deletado!");
+                continue;
+            }
+
+            if (mainOption == 4) {
                 System.out.println("Fechando o jogo...");
                 running = false;
                 continue;
@@ -87,7 +113,6 @@ public class GameController {
     public void playGame(GameMechanic gameMechanic, MenuSettings menuSettings){
         GameResults gameResults = gameMechanic.play(menuSettings);
         String playerName = menuSettings.getPLAYERNAME();
-        System.out.println(gameResults);
         gameOver(gameResults, playerName);
     }
 
@@ -95,9 +120,8 @@ public class GameController {
         if (gameResults.getHits() == 0 && gameResults.getMisses() == 0 && gameResults.getScore() == 0) {
             return;
         }
-        GameResultsDAO gameResultsDAO = new GameResultsDAO();
-        gameResultsDAO.insert(gameResults, playerName);
-        GameOverUI.gameOverUI(gameResultsDAO);
-    }
 
+        this.gameResultsDAO.insert(gameResults, playerName);
+        GameOverUI.gameOverUI(gameResults, playerName);
+    }
 }

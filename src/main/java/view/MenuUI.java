@@ -5,7 +5,9 @@ public class MenuUI {
 	public void showStartMenu() { // Do not pass scanner as parameter
 			System.out.println("-------------------- Advinhar Palavras ---------------");
 			System.out.println("1. Jogar");
-			System.out.println("2. Sair do Jogo");
+			System.out.println("2. Mostrar ranking");
+			System.out.println("3. Resetar pontuações");
+			System.out.println("4. Sair do Jogo");
 			System.out.println("------------------------------------------------------");
 	}
 

@@ -1,10 +1,11 @@
 package model.game.results;
 
 public class GameResults {
+	private String playerName;
 	private Integer hits;
 	private Integer misses;
 	private Integer score;
-
+	private String timeStampFormatted;
 
 	public GameResults() {
 		this.hits = 0;
@@ -14,6 +15,14 @@ public class GameResults {
 	public GameResults(int hits, int misses) {
 		this.hits = hits;
 		this.misses = misses;
+	}
+
+	public GameResults(String playerName, Integer hits, Integer misses, Integer score, String timeStampFormatted) {
+		this.playerName = playerName;
+		this.hits = hits;
+		this.misses = misses;
+		this.score = score;
+		this.timeStampFormatted = timeStampFormatted;
 	}
 
 	public Integer getHits() {
@@ -36,10 +45,10 @@ public class GameResults {
 
 	@Override
 	public String toString() {
-		return "GameResults{" +
-				"hits=" + hits +
-				", misses=" + misses +
-				", score=" + getScore() +
-				'}';
+		return "Nome do Jogador = '" + playerName + '\'' +
+				", Acertos = " + hits +
+				", Erros = " + misses +
+				", Pontuação = " + score +
+				", Horário = " + timeStampFormatted;
 	}
 }
