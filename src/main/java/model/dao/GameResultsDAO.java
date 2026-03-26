@@ -36,7 +36,8 @@ public class GameResultsDAO {
         try(PreparedStatement ps = conn.prepareStatement(
                 "SELECT playername, hits, misses, score, created_at " +
                         "FROM results WHERE deleted = false " +
-                        "ORDER BY score DESC"
+                        "ORDER BY score DESC " +
+                        "LIMIT 5"
         )) {
             try(ResultSet rs = ps.executeQuery()) {
                 while(rs.next()) {
@@ -71,6 +72,20 @@ public class GameResultsDAO {
         )) {
             int rowsAffected = ps.executeUpdate();
             System.out.println(rowsAffected + " linhas deletadas.");
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
+
+    public void recoverScores() {
+        try (PreparedStatement ps = conn.prepareStatement(
+                "UPDATE results " +
+                        "SET deleted = false " +
+                        "WHERE deleted = true"
+        )) {
+
+            int rowsAffected = ps.executeUpdate();
+            System.out.println(rowsAffected + " linhas recuperadas.");
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }

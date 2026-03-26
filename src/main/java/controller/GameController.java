@@ -55,12 +55,31 @@ public class GameController {
             }
 
             if (mainOption == 3) {
+                System.out.println("Tem certeza? Para confirmar digite SIM");
+                System.out.println("Para cancelar digite CANCELAR");
+                String confirm = InputHandler.nextLine().toUpperCase();
+
+                while (!confirm.equals("SIM") && !confirm.equals("CANCELAR")) {
+                    System.out.println("Digite SIM ou CANCELAR");
+                    confirm = InputHandler.nextLine().toUpperCase();
+                }
+
+                if (confirm.equals("CANCELAR")) {
+                    continue;
+                }
+
                 gameResultsDAO.softDeleteScores();
-                System.out.println("Ranking deletado!");
+                System.out.println("Histórico de pontuações 'deletado' com sucesso!");
                 continue;
             }
 
             if (mainOption == 4) {
+                gameResultsDAO.recoverScores();
+                System.out.println("Histórico de pontuações restaurado com sucesso!");
+                continue;
+            }
+
+            if (mainOption == 5) {
                 System.out.println("Fechando o jogo...");
                 running = false;
                 continue;
