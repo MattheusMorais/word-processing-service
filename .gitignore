@@ -6,6 +6,7 @@ target/
 .idea
 bin/
 wordgame_exercício_java.pdf
+src/main/resources/database/db.properties
 
 ### JavaDoc
 javadoc/
