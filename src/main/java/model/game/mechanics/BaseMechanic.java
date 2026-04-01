@@ -1,23 +1,22 @@
 package model.game.mechanics;
 
 import model.game.results.GameResults;
-import model.utils.handlers.InputHandler;
+import model.utils.handlers.InputProvider;
 import model.words.WordBank;
 import model.game.shufflers.Shuffler;
 import model.game.shufflers.ShufflerFactory;
 
 public class BaseMechanic implements GameMechanic {
+	private final WordBank bank = new WordBank();
+	private final GameResults currentGameResults = new GameResults();
 	int difficulty;
 
 	public BaseMechanic(int difficulty) {
 		this.difficulty = difficulty;
 	}
 
-	GameResults currentGameResults = new GameResults();
 	@Override
 	public GameResults play() {
-		WordBank bank = new WordBank();
-
 		System.out.println("*** OBS: Digite 0 a qualquer momento para Finalizar o Jogo. ***");
 		while (true) {
 			String originalWord = bank.returnWord();
@@ -27,13 +26,11 @@ public class BaseMechanic implements GameMechanic {
 			System.out.println("Palavra embaralhada: " + scrambledWord);
 			System.out.println("Advinhe a palavra: ");
 
-			String guess = InputHandler.nextLine();
+			String guess = InputProvider.nextLine();
 			if (guess.equals("0")) {
 				break;
 			}
-
 			processAnswer(guess, originalWord);
-
 		}
 		return currentGameResults;
 	}
@@ -46,5 +43,4 @@ public class BaseMechanic implements GameMechanic {
 			currentGameResults.incrementMisses(1);
 		}
 	}
-
 }
