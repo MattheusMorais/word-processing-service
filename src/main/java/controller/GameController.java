@@ -1,97 +1,70 @@
 package controller;
 
-import model.dao.GameResultsDAO;
 import model.exceptions.ValidationException;
 import model.game.mechanics.BaseMechanic;
 import model.game.results.GameResults;
-import model.game.settings.MenuSettings;
-import model.utils.handlers.InputHandler;
+import model.game.validators.MenuValidator;
+import model.utils.handlers.InputProvider;
 import model.game.mechanics.GameMechanic;
-import model.utils.handlers.LocalDateTimeHandler;
+import services.GameService;
+import services.RankingService;
 import view.GameOverUI;
 import view.MenuUI;
 import java.util.InputMismatchException;
 import java.util.List;
 
 public class GameController {
-    private final GameResultsDAO gameResultsDAO;
+    private final RankingService rankingService;
+    private final GameService gameService;
+    private final MenuUI menuUI = new MenuUI();
+    private boolean isRunning = true;
 
-    public GameController(GameResultsDAO gameResultsDAO) {
-        this.gameResultsDAO = gameResultsDAO;
-
+    public GameController(RankingService rankingService, GameService gameService) {
+        this.rankingService = rankingService;
+        this.gameService = gameService;
     }
 
     public void startGame() {
-        boolean running = true;
-        MenuUI menuUI = new MenuUI();
 
-        while (running) {
+        while (isRunning) {
             menuUI.showStartMenu();
-
             int mainOption;
             try {
-                mainOption = InputHandler.nextInt();
-                InputHandler.nextLine();
-                MenuSettings.isOptionValid(mainOption);
-
-            } catch (InputMismatchException e) {
+                mainOption = InputProvider.nextInt();
+                InputProvider.nextLine();
+                MenuValidator.isOptionValid(mainOption);
+            }
+            catch (InputMismatchException e) {
                 System.out.println("Erro: Digite um número válido.");
-                InputHandler.nextLine();
+                InputProvider.nextLine();
                 continue;
-            } catch (ValidationException e) {
+            }
+            catch (ValidationException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
 
-            if (mainOption == 2) {
-                List<GameResults> ranking = gameResultsDAO.showRanking();
-                if (ranking.isEmpty()) {
-                    System.out.println("Não há pontuações, jogue uma partida :)");
-                }
-                for (GameResults result : ranking) {
-                    System.out.println(result);
-                }
-                continue;
-            }
-
-            if (mainOption == 3) {
-                System.out.println("Tem certeza? Para confirmar digite SIM");
-                System.out.println("Para cancelar digite CANCELAR");
-                String confirm = InputHandler.nextLine().toUpperCase();
-
-                while (!confirm.equals("SIM") && !confirm.equals("CANCELAR")) {
-                    System.out.println("Digite SIM ou CANCELAR");
-                    confirm = InputHandler.nextLine().toUpperCase();
-                }
-
-                if (confirm.equals("CANCELAR")) {
+            switch(mainOption) {
+                case 2:
+                    showRanking();
                     continue;
-                }
-
-                gameResultsDAO.softDeleteScores();
-                System.out.println("Histórico de pontuações 'deletado' com sucesso!");
-                continue;
-            }
-
-            if (mainOption == 4) {
-                gameResultsDAO.recoverScores();
-                System.out.println("Histórico de pontuações restaurado com sucesso!");
-                continue;
-            }
-
-            if (mainOption == 5) {
-                System.out.println("Fechando o jogo...");
-                running = false;
-                continue;
+                case 3:
+                    handleReset();
+                    continue;
+                case 4:
+                    handleRestore();
+                    continue;
+                case 5:
+                    closeGame();
+                    continue;
             }
 
             String playerName;
             while (true) {
-
                 try {
                     System.out.println("Digite o nome do jogador: ");
-                    playerName = InputHandler.nextLine();
-                    MenuSettings.isPlayerNameValid(playerName);
+                    playerName = InputProvider.nextLine();
+                    MenuValidator.isPlayerNameValid(playerName);
                     break;
                 } catch (ValidationException e) {
                     System.out.println(e.getMessage());
@@ -102,55 +75,48 @@ public class GameController {
             int difficultyOption;
             while (true) {
                 menuUI.showDifficultyMenu();
-
                 try {
-                    difficultyOption = InputHandler.nextInt();
-                    InputHandler.nextLine();
-                    MenuSettings.isDifficultyValid(difficultyOption);
+                    difficultyOption = InputProvider.nextInt();
+                    InputProvider.nextLine();
+                    MenuValidator.isDifficultyValid(difficultyOption);
                     break;
                 } catch (InputMismatchException e1) {
-                    InputHandler.nextLine();
+                    InputProvider.nextLine();
                     System.out.println("Por favor, tente novamente.");
                 } catch (ValidationException e1) {
                     System.out.println(e1.getMessage());
                     System.out.println("Por favor, tente novamente.");
                 }
             }
-
-            MenuSettings menuSettings = new MenuSettings(mainOption, playerName, difficultyOption);
-            createGameMechanic(menuSettings);
+            GameMechanic gameMechanic = new BaseMechanic(difficultyOption);
+            GameResults gameResults = gameMechanic.play();
+            gameService.finishGame(gameResults, playerName);
+            GameOverUI.gameOverUI(gameResults);
         }
     }
 
-    public void createGameMechanic(MenuSettings menuSettings) {
-        String playerName = menuSettings.getPLAYERNAME();
-        int difficulty = menuSettings.getDIFFICULTY();
-
-        GameMechanic gameMechanic = new BaseMechanic(difficulty);
-        playGame(gameMechanic, playerName);
+    private void showRanking() {
+        List<GameResults> ranking = rankingService.getRanking();
+        if (ranking.isEmpty()) {
+            System.out.println("Não há pontuações, jogue uma partida :)");
+        }
+        ranking.forEach(System.out::println);
     }
 
-    public void playGame(GameMechanic gameMechanic, String playerName){
-        GameResults gameResults = gameMechanic.play();
-        gameOver(gameResults, playerName);
+    private void handleReset() {
+        if (menuUI.confirmReset()) {
+            rankingService.resetRanking();
+        } else {
+            System.out.println("Ação cancelada! Retornando ao menu inicial...");
+        }
     }
 
-    public void gameOver(GameResults gameResults, String playerName) {
-        if (gameResults.getHits() == 0 && gameResults.getMisses() == 0 && gameResults.calculateScore() == 0) {
-            return;
-        }
+    private void handleRestore() {
+        rankingService.restoreRanking();
+    }
 
-        if (gameResults.getPlayerName() == null && gameResults.getTimeStampFormatted() == null && gameResults.getScore() == null) {
-            gameResults.setPlayerName(playerName);
-
-            String timeFormatted = LocalDateTimeHandler.getNow();
-            gameResults.setTimeStampFormatted(timeFormatted);
-
-            int score = gameResults.calculateScore();
-            gameResults.setScore(score);
-        }
-
-        gameResultsDAO.insert(gameResults);
-        GameOverUI.gameOverUI(gameResults);
+    private void closeGame() {
+        System.out.println("Jogo encerrado. Obrigado por jogar!");
+        isRunning = false;
     }
 }

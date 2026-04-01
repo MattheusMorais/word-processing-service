@@ -1,5 +1,7 @@
 package view;
 
+import model.utils.handlers.InputProvider;
+
 public class MenuUI {
 
 	public void showStartMenu() {
@@ -17,4 +19,18 @@ public class MenuUI {
 		System.out.println("1. Fácil");
 		System.out.println("2. Difícil");
 	}
+
+	public boolean confirmReset() {
+		System.out.println("Tem certeza? (SIM/CANCELAR)");
+
+		while (true) {
+			String input = InputProvider.nextLine().toUpperCase();
+
+			if (input.equals("SIM")) return true;
+			if (input.equals("CANCELAR")) return false;
+
+			System.out.println("Digite SIM ou CANCELAR");
+		}
+	}
+
 }
