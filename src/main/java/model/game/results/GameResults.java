@@ -11,6 +11,7 @@ public class GameResults {
 		this.hits = 0;
 		this.misses = 0;
 	}
+
 	public GameResults(String playerName, Integer hits, Integer misses, Integer score, String timeStampFormatted) {
 		this.playerName = playerName;
 		this.hits = hits;

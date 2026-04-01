@@ -1,16 +1,16 @@
 package model.utils;
 
 import model.exceptions.DbException;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
 
-
 	public List<String> readWordBank() {
-		InputStream words = getClass().getClassLoader().getResourceAsStream("wordBank/animals.txt");
+		InputStream words = getClass()
+				.getClassLoader()
+				.getResourceAsStream("wordBank/animals.txt");
 
 		if (words == null) {
 			throw new DbException("Arquivo não encontrado.");
@@ -24,7 +24,8 @@ public class FileManager {
 				wordList.add(word.trim().toLowerCase());
 			}
 			return wordList;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
             throw new RuntimeException("Erro ao ler do arquivo: " + e.getMessage());
         }
     }

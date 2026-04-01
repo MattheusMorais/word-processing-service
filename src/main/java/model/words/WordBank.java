@@ -1,11 +1,11 @@
 package model.words;
 
-import model.utils.handlers.RandomHandler;
+import model.utils.handlers.RandomProvider;
 import model.utils.FileManager;
 import java.util.List;
 
 public class WordBank {
-	List<String> wordList;
+	private List<String> wordList;
 
 	public WordBank() {
 		readWordFromBank();
@@ -17,7 +17,7 @@ public class WordBank {
 	}
 
 	public String returnWord() {
-		int index = RandomHandler.nextInt(wordList.size());
+		int index = RandomProvider.nextInt(wordList.size());
 		return wordList.get(index);
 	}
 }

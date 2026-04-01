@@ -2,11 +2,15 @@ package model.dao;
 
 import model.exceptions.DbException;
 import model.game.results.GameResults;
-import model.utils.handlers.LocalDateTimeHandler;
+import model.utils.handlers.DateTimeProvider;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de acesso a dados (DAO) para resultados de jogos.
+ * Responsável por interagir diretamente com o banco de dados.
+ */
 public class GameResultsDAO {
     private Connection conn;
 
@@ -15,7 +19,6 @@ public class GameResultsDAO {
     }
 
     public void insert(GameResults results)  {
-
         try (PreparedStatement ps = conn.prepareStatement(
                 "INSERT INTO results (playername, hits, misses, score) VALUES (?,?,?,?)"
         )) {
@@ -47,24 +50,20 @@ public class GameResultsDAO {
                     Integer score = rs.getInt("score");
                     Timestamp datetime = rs.getTimestamp("created_at");
 
-                    String dateTimeFormatted = LocalDateTimeHandler.formatTimeStamp(datetime);
+                    String dateTimeFormatted = DateTimeProvider.formatTimeStamp(datetime);
 
                     GameResults result = new GameResults(playerName, hits, misses, score, dateTimeFormatted);
 
                     ranking.add(result);
                 }
-
                 return ranking;
-
             }
-
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
     }
 
-    public void softDeleteScores() {
-
+    public void softDeleteAllScores() {
         try(PreparedStatement ps = conn.prepareStatement(
                 "UPDATE results " +
                         "SET deleted = true " +
@@ -77,13 +76,12 @@ public class GameResultsDAO {
         }
     }
 
-    public void recoverScores() {
+    public void restoreAllScores() {
         try (PreparedStatement ps = conn.prepareStatement(
                 "UPDATE results " +
                         "SET deleted = false " +
                         "WHERE deleted = true"
         )) {
-
             int rowsAffected = ps.executeUpdate();
             System.out.println(rowsAffected + " linhas recuperadas.");
         } catch (SQLException e) {
