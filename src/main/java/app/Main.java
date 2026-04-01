@@ -3,7 +3,9 @@ package app;
 import controller.GameController;
 import model.dao.GameResultsDAO;
 import model.utils.database.DatabaseConnection;
-import model.utils.handlers.InputHandler;
+import model.utils.handlers.InputProvider;
+import services.GameService;
+import services.RankingService;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -18,10 +20,13 @@ public class Main {
 			System.out.println("Conexão aberta com sucesso!");
 			GameResultsDAO gameResultsDAO = new GameResultsDAO(conn);
 
-			GameController gameController = new GameController(gameResultsDAO);
+			RankingService rankingService = new RankingService(gameResultsDAO);
+			GameService gameService = new GameService(gameResultsDAO);
+
+			GameController gameController = new GameController(rankingService, gameService);
 			gameController.startGame();
 
-			InputHandler.closeScanner();
+			InputProvider.closeScanner();
 		}
 	}
 }
