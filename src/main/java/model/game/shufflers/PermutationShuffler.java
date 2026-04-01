@@ -1,6 +1,6 @@
 package model.game.shufflers;
 
-import model.utils.handlers.RandomProvider;
+import utils.providers.RandomProvider;
 
 /**
  * Embaralhador que realiza permutação aleatória dos caracteres.

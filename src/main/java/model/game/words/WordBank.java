@@ -1,7 +1,7 @@
-package model.words;
+package model.game.words;
 
-import model.utils.handlers.RandomProvider;
-import model.utils.FileManager;
+import utils.providers.RandomProvider;
+import utils.FileManager;
 import java.util.List;
 
 /**

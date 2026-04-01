@@ -1,6 +1,6 @@
-package model.game.validators;
+package utils.validators;
 
-import model.exceptions.ValidationException;
+import exceptions.ValidationException;
 
 /**
  * Classe utilitária responsável por validar entradas do usuário.

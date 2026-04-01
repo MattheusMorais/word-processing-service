@@ -1,8 +1,8 @@
 package model.game.mechanics;
 
 import model.game.results.GameResults;
-import model.utils.handlers.InputProvider;
-import model.words.WordBank;
+import utils.providers.InputProvider;
+import model.game.words.WordBank;
 import model.game.shufflers.Shuffler;
 import model.game.shufflers.ShufflerFactory;
 

@@ -1,6 +1,6 @@
 package services;
 
-import model.dao.GameResultsDAO;
+import repository.GameResultsDAO;
 import model.game.results.GameResults;
 import java.util.List;
 

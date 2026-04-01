@@ -1,9 +1,9 @@
 package app;
 
 import controller.GameController;
-import model.dao.GameResultsDAO;
-import model.utils.database.DatabaseConnection;
-import model.utils.handlers.InputProvider;
+import repository.GameResultsDAO;
+import config.DatabaseConnection;
+import utils.providers.InputProvider;
 import services.GameService;
 import services.RankingService;
 import java.sql.Connection;

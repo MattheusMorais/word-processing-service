@@ -1,8 +1,8 @@
 package services;
 
-import model.dao.GameResultsDAO;
+import repository.GameResultsDAO;
 import model.game.results.GameResults;
-import model.utils.handlers.DateTimeProvider;
+import utils.providers.DateTimeProvider;
 
 /**
  * Serviço responsável pela lógica de finalização do jogo.

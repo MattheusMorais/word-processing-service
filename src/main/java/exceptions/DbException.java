@@ -1,4 +1,4 @@
-package model.exceptions;
+package exceptions;
 
 /**
  * Exceção personalizada para erros relacionados ao banco de dados.

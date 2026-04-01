@@ -1,8 +1,8 @@
-package model.dao;
+package repository;
 
-import model.exceptions.DbException;
+import exceptions.DbException;
 import model.game.results.GameResults;
-import model.utils.handlers.DateTimeProvider;
+import utils.providers.DateTimeProvider;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

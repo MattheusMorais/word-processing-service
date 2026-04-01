@@ -1,6 +1,6 @@
 package view;
 
-import model.utils.handlers.InputProvider;
+import utils.providers.InputProvider;
 
 /**
  * Responsável por exibir menus e interagir com o usuário via console.

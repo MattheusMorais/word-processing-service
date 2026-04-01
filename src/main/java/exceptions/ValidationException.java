@@ -1,4 +1,4 @@
-package model.exceptions;
+package exceptions;
 
 /**
  * Exceção utilizada para representar erros de validação de dados de entrada.

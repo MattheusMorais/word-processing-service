@@ -1,6 +1,6 @@
-package model.utils.database;
+package config;
 
-import model.exceptions.DbException;
+import exceptions.DbException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;

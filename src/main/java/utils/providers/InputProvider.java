@@ -1,4 +1,4 @@
-package model.utils.handlers;
+package utils.providers;
 
 import java.util.Scanner;
 

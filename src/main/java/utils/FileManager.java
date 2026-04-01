@@ -1,6 +1,6 @@
-package model.utils;
+package utils;
 
-import model.exceptions.DbException;
+import exceptions.DbException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

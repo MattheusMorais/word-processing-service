@@ -1,10 +1,10 @@
 package controller;
 
-import model.exceptions.ValidationException;
+import exceptions.ValidationException;
 import model.game.mechanics.BaseMechanic;
 import model.game.results.GameResults;
-import model.game.validators.MenuValidator;
-import model.utils.handlers.InputProvider;
+import utils.validators.MenuValidator;
+import utils.providers.InputProvider;
 import model.game.mechanics.GameMechanic;
 import services.GameService;
 import services.RankingService;
