@@ -8,8 +8,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Responsável por fornecer conexões com o banco de dados.
+ * Utiliza propriedades definidas em arquivo externo.
+ */
 public class DatabaseConnection {
-
+    /**
+     * Obtém uma conexão com o banco de dados.
+     *
+     * @return conexão ativa
+     * @throws DbException se ocorrer erro ao conectar
+     */
     public static Connection getConnection() {
         try {
             Properties props = loadProperties();
@@ -23,6 +32,12 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * Carrega as propriedades de configuração do banco.
+     *
+     * @return propriedades carregadas
+     * @throws DbException se o arquivo não for encontrado ou ocorrer erro de leitura
+     */
     public static Properties loadProperties() {
         try {
             try(InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database/db.properties")) {

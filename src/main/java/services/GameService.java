@@ -6,7 +6,7 @@ import model.utils.handlers.DateTimeProvider;
 
 /**
  * Serviço responsável pela lógica de finalização do jogo.
- * Calcula pontuação, adiciona informações ao resultado e persiste no banco de dados.
+ * Calcula pontuação, adiciona informações ao resultado e persiste no banco.
  */
 public class GameService {
     private final GameResultsDAO gameResultsDAO;
@@ -15,6 +15,12 @@ public class GameService {
         this.gameResultsDAO = gameResultsDAO;
     }
 
+    /**
+     * Finaliza o jogo e salva o resultado.
+     *
+     * @param gameResults resultado da partida
+     * @param playerName nome do jogador
+     */
     public void finishGame(GameResults gameResults, String playerName) {
         if (gameResults.getHits() == 0 && gameResults.getMisses() == 0) {
             return;

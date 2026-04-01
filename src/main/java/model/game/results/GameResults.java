@@ -1,5 +1,9 @@
 package model.game.results;
 
+/**
+ * Representa o resultado de uma partida.
+ * Contém informações como jogador, acertos, erros, pontuação e data.
+ */
 public class GameResults {
 	private String playerName;
 	private Integer hits;
@@ -40,6 +44,11 @@ public class GameResults {
 		this.misses += misses;
 	}
 
+	/**
+	 * Calcula a pontuação com base nos acertos e erros.
+	 *
+	 * @return pontuação calculada
+	 */
 	public Integer calculateScore() {
 		return (200 * hits) + (-100 * misses);
 	}

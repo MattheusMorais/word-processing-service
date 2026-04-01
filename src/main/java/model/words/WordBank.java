@@ -4,6 +4,9 @@ import model.utils.handlers.RandomProvider;
 import model.utils.FileManager;
 import java.util.List;
 
+/**
+ * Gerencia o conjunto de palavras do jogo.
+ */
 public class WordBank {
 	private List<String> wordList;
 

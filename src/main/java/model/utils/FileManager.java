@@ -5,8 +5,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsável pela leitura de arquivos do sistema.
+ */
 public class FileManager {
 
+	/**
+	 * Lê o arquivo de palavras e retorna uma lista.
+	 *
+	 * @return lista de palavras
+	 * @throws RuntimeException se ocorrer erro ao ler o arquivo
+	 */
 	public List<String> readWordBank() {
 		InputStream words = getClass()
 				.getClassLoader()

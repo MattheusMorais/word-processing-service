@@ -18,6 +18,12 @@ public class GameResultsDAO {
         this.conn = conn;
     }
 
+    /**
+     * Insere um novo resultado no banco de dados.
+     *
+     * @param results resultado da partida a ser persistido
+     * @throws DbException se ocorrer erro ao acessar o banco
+     */
     public void insert(GameResults results)  {
         try (PreparedStatement ps = conn.prepareStatement(
                 "INSERT INTO results (playername, hits, misses, score) VALUES (?,?,?,?)"
@@ -33,6 +39,12 @@ public class GameResultsDAO {
         }
     }
 
+    /**
+     * Retorna o ranking dos melhores jogadores.
+     *
+     * @return lista com os resultados ordenados por pontuação
+     * @throws DbException se ocorrer erro ao acessar o banco
+     */
     public List<GameResults> showRanking() {
         List<GameResults> ranking = new ArrayList<>();
 
@@ -63,6 +75,11 @@ public class GameResultsDAO {
         }
     }
 
+    /**
+     * Marca todas as pontuações como deletadas (soft delete).
+     *
+     * @throws DbException se ocorrer erro ao acessar o banco
+     */
     public void softDeleteAllScores() {
         try(PreparedStatement ps = conn.prepareStatement(
                 "UPDATE results " +
@@ -76,6 +93,11 @@ public class GameResultsDAO {
         }
     }
 
+    /**
+     * Restaura pontuações previamente deletadas.
+     *
+     * @throws DbException se ocorrer erro ao acessar o banco
+     */
     public void restoreAllScores() {
         try (PreparedStatement ps = conn.prepareStatement(
                 "UPDATE results " +

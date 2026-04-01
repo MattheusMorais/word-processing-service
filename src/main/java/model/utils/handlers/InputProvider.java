@@ -2,11 +2,10 @@ package model.utils.handlers;
 
 import java.util.Scanner;
 
+/**
+ * Classe utilitária que centraliza a leitura de entrada do usuário.
+ */
 public class InputProvider {
-    /*
-   Provides centralized access to Scanner for the entire project
-   */
-
     private static final Scanner SC = new Scanner(System.in);
 
     public static int nextInt() {

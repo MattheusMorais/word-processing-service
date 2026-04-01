@@ -9,6 +9,10 @@ import services.RankingService;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Classe principal da aplicação.
+ * Responsável por inicializar os componentes e iniciar o jogo.
+ */
 public class Main {
 
 	public static void main(String[] args) throws SQLException {

@@ -2,6 +2,9 @@ package model.game.shufflers;
 
 import model.utils.handlers.RandomProvider;
 
+/**
+ * Embaralhador que realiza permutação aleatória dos caracteres.
+ */
 public class PermutationShuffler implements Shuffler {
 
 	@Override

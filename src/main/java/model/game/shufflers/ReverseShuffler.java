@@ -1,5 +1,8 @@
 package model.game.shufflers;
 
+/**
+ * Embaralhador que inverte a palavra original.
+ */
 public class ReverseShuffler implements Shuffler {
 
 	@Override

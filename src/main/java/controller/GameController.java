@@ -13,6 +13,10 @@ import view.MenuUI;
 import java.util.InputMismatchException;
 import java.util.List;
 
+/**
+ * Controlador principal do jogo.
+ * Gerencia o fluxo da aplicação e coordena a interação entre UI e serviços.
+ */
 public class GameController {
     private final RankingService rankingService;
     private final GameService gameService;

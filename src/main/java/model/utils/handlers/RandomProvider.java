@@ -2,6 +2,9 @@ package model.utils.handlers;
 
 import java.util.Random;
 
+/**
+ * Classe utilitária para geração de valores aleatórios.
+ */
 public class RandomProvider {
     private static final Random random = new Random();
 

@@ -1,5 +1,8 @@
 package model.game.shufflers;
 
+/**
+ * Fábrica responsável por criar embaralhadores com base na dificuldade.
+ */
 public class ShufflerFactory {
 
 	public static Shuffler createShuffler(int difficulty) {

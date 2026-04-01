@@ -6,6 +6,10 @@ import model.words.WordBank;
 import model.game.shufflers.Shuffler;
 import model.game.shufflers.ShufflerFactory;
 
+/**
+ * Implementação base da mecânica do jogo.
+ * Controla o fluxo da partida e compara respostas do jogador.
+ */
 public class BaseMechanic implements GameMechanic {
 	private final WordBank bank = new WordBank();
 	private final GameResults currentGameResults = new GameResults();
@@ -15,6 +19,11 @@ public class BaseMechanic implements GameMechanic {
 		this.difficulty = difficulty;
 	}
 
+	/**
+	 * Executa a lógica principal do jogo.
+	 *
+	 * @return resultado da partida
+	 */
 	@Override
 	public GameResults play() {
 		System.out.println("*** OBS: Digite 0 a qualquer momento para Finalizar o Jogo. ***");
@@ -35,6 +44,12 @@ public class BaseMechanic implements GameMechanic {
 		return currentGameResults;
 	}
 
+	/**
+	 * Processa a resposta do jogador.
+	 *
+	 * @param guess resposta do jogador
+	 * @param originalWord palavra correta
+	 */
 	@Override
 	public final void processAnswer(String guess, String originalWord) {
 		if (guess.equals(originalWord)) {

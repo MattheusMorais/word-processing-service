@@ -2,6 +2,9 @@ package view;
 
 import model.utils.handlers.InputProvider;
 
+/**
+ * Responsável por exibir menus e interagir com o usuário via console.
+ */
 public class MenuUI {
 
 	public void showStartMenu() {
