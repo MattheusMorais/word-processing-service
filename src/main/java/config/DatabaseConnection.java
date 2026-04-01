@@ -1,12 +1,9 @@
 package config;
 
 import exceptions.DbException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /**
  * Responsável por fornecer conexões com o banco de dados.
@@ -21,35 +18,17 @@ public class DatabaseConnection {
      */
     public static Connection getConnection() {
         try {
-            Properties props = loadProperties();
+            String host = System.getenv().getOrDefault("DB_HOST", "localhost");
+            String port = System.getenv("DB_PORT");
+            String db = System.getenv("DB_NAME");
 
-            String url = props.getProperty("dburl");
+            String url = "jdbc:postgresql://" + host + ":" + port + "/" + db;
 
-            return DriverManager.getConnection(url, props);
-        }
-        catch (SQLException e) {
-            throw new DbException(e.getMessage());
-        }
-    }
+            String password = System.getenv("DB_PASSWORD");
+            String user = System.getenv("DB_USER");
 
-    /**
-     * Carrega as propriedades de configuração do banco.
-     *
-     * @return propriedades carregadas
-     * @throws DbException se o arquivo não for encontrado ou ocorrer erro de leitura
-     */
-    public static Properties loadProperties() {
-        try {
-            try(InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database/db.properties")) {
-                if (is == null) {
-                    throw new DbException("Arquivo db.properties não encontrado no classpath.");
-                }
-                Properties props = new Properties();
-                props.load(is);
-                return props;
-            }
-        }
-        catch (IOException e) {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
     }

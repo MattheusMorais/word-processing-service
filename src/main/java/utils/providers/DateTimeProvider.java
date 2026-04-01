@@ -1,7 +1,9 @@
 package utils.providers;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -16,7 +18,7 @@ public class DateTimeProvider {
      * @return data e hora atual
      */
     public static String getNow() {
-        return LocalDateTime.now().format(formatter);
+        return LocalDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatter);
     }
 
     /**
