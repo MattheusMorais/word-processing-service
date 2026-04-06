@@ -33,7 +33,7 @@ public class BaseMechanic implements GameMechanic {
 
 			String scrambledWord = shuffler.shuffler(originalWord);
 			System.out.println("Palavra embaralhada: " + scrambledWord);
-			System.out.println("Advinhe a palavra: ");
+			System.out.println("Adivinhe a palavra: ");
 
 			String guess = InputProvider.nextLine();
 			if (guess.equals("0")) {

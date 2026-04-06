@@ -12,7 +12,7 @@ import java.util.List;
  * Responsável por interagir diretamente com o banco de dados.
  */
 public class GameResultsDAO {
-    private Connection conn;
+    private final Connection conn;
 
     public GameResultsDAO(Connection conn) {
         this.conn = conn;

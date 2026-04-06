@@ -3,7 +3,7 @@ package view;
 import model.game.results.GameResults;
 
 /**
- * Responsável por exibir o resultado final do jogo.
+ * Responsável por exibir o resultado do jogo.
  */
 public class GameOverUI {
 
