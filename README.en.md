@@ -50,7 +50,6 @@ Although the system is exposed through a terminal-based interface, its core is s
 - Testability with JUnit
 - Containerized execution with Docker Compose
 
-The "game" layer acts only as a **driver for exercising backend logic**, making this project closer to a **processing engine with state management** than a traditional game.
 
 <div align="center">
     <img src="https://github.com/MattheusMorais/word-processing-service/blob/main/images/running.png?raw=true" alt="Logo" width="50%" height="50%">
