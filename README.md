@@ -56,7 +56,7 @@ Embora o sistema seja exposto por uma interface de terminal, seu núcleo funcion
 
 <div align="center">
 
-[![Java][Java]][Java-url] [![PostgreSQL][PostgreSQL]][PostgreSQL-url] [![Docker][Docker]][Docker-url] [![Docker-compose][Docker-compose]][Docker-compose-url] [![JUnit][JUnit]][JUnit-url] [![Intellij][Intellij]][Intellij-url]
+[![Java][Java]][Java-url] [![PostgreSQL][PostgreSQL]][PostgreSQL-url] [![Docker][Docker]][Docker-url] [![Docker-compose][Docker-compose]][Docker-compose-url] [![maven][maven]][maven-url][![JUnit][JUnit]][JUnit-url] [![Intellij][Intellij]][Intellij-url]
 </div>
 
 <!-- FEATURES -->
@@ -219,4 +219,5 @@ Link do Projeto: https://github.com/MattheusMorais/word-processing-service
 [JUnit-url]: https://junit.org/
 [Intellij]: https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white
 [Intellij-url]: https://www.jetbrains.com/
-[logo-img]: https://github.com/MattheusMorais/word-processing-service/blob/main/images/word-processing-service-logo.png
+[maven]:https://img.shields.io/badge/apache_maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white
+[maven-url]:https://maven.apache.org/
