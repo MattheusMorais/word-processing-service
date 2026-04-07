@@ -21,7 +21,7 @@ public class Main {
 
 	private static void runGame() throws SQLException {
 		try(Connection conn = DatabaseConnection.getConnection()) {
-			System.out.println("Conexão aberta com sucesso!");
+//			System.out.println("Conexão aberta com sucesso!"); // debug
 			GameResultsDAO gameResultsDAO = new GameResultsDAO(conn);
 
 			RankingService rankingService = new RankingService(gameResultsDAO);
