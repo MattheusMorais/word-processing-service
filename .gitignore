@@ -7,7 +7,6 @@ target/
 bin/
 wordgame_exercício_java.pdf
 src/main/resources/database/db.properties
-.env
 dependency-reduced-pom.xml
 
 ### JavaDoc

@@ -1,6 +1,10 @@
-FROM eclipse-temurin:21
-LABEL maintainer="moraism.dev@gmail.com"
+FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY target/*.jar word-processing-service.jar
-EXPOSE 8080
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21
+WORKDIR /app
+COPY --from=build /app/target/*.jar word-processing-service.jar
+
 ENTRYPOINT ["java", "-jar", "word-processing-service.jar"]
