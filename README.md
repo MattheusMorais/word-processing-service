@@ -56,7 +56,7 @@ Embora o sistema seja exposto por uma interface de terminal, seu núcleo funcion
 
 <div align="center">
 
-[![Java][Java]][Java-url] [![PostgreSQL][PostgreSQL]][PostgreSQL-url] [![Docker][Docker]][Docker-url] [![Docker-compose][Docker-compose]][Docker-compose-url] [![maven][maven]][maven-url][![JUnit][JUnit]][JUnit-url] [![Intellij][Intellij]][Intellij-url]
+[![Java][Java]][Java-url] [![PostgreSQL][PostgreSQL]][PostgreSQL-url] [![Docker][Docker]][Docker-url] [![Docker-compose][Docker-compose]][Docker-compose-url] [![maven][maven]][maven-url] [![JUnit][JUnit]][JUnit-url] [![Intellij][Intellij]][Intellij-url]
 </div>
 
 <!-- FEATURES -->
