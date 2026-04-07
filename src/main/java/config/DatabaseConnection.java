@@ -19,13 +19,13 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             String host = System.getenv().getOrDefault("DB_HOST", "localhost");
-            String port = System.getenv("DB_PORT");
+            String port = System.getenv().getOrDefault("DB_PORT", "5432");
             String db = System.getenv("DB_NAME");
 
             String url = "jdbc:postgresql://" + host + ":" + port + "/" + db;
 
-            String password = System.getenv("DB_PASSWORD");
             String user = System.getenv("DB_USER");
+            String password = System.getenv("DB_PASSWORD");
 
             return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
