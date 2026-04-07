@@ -23,7 +23,7 @@ Um serviço de processamento de palavras orientado a backend, projetado como um 
 
 A aplicação utiliza uma interface baseada em palavras como motor para simular um pipeline de processamento, onde as entradas são validadas, transformadas e persistidas através de camadas bem definidas do sistema.
 
-Embora inclua uma interação de adivinhação de palavras, o foco do projeto está no design de backend, regras de negócio e padrões arquiteturais — não na jogabilidade. <br />
+Embora inclua uma interação de adivinhação de palavras, o foco do projeto está no design de backend, regras de negócio e padrões arquiteturais, não na jogabilidade. <br />
 <br />
 <a href="https://github.com/MattheusMorais/word-processing-service/issues?q=state%3Aopen%20label%3Abug">Reportar Bug</a>
   </p>
@@ -48,8 +48,6 @@ Embora o sistema seja exposto por uma interface de terminal, seu núcleo funcion
 - Testabilidade com JUnit
 - Execução containerizada com Docker Compose
 
-A camada de "jogo" atua apenas como um **driver para exercitar a lógica de backend**, tornando este projeto mais próximo de um **motor de processamento com gerenciamento de estado** do que um jogo tradicional.
-
 <div align="center">
     <img src="https://github.com/MattheusMorais/word-processing-service/blob/main/images/running.png?raw=true" alt="Logo" width="50%" height="50%">
 </div>
@@ -58,13 +56,7 @@ A camada de "jogo" atua apenas como um **driver para exercitar a lógica de back
 
 <div align="center">
 
-[![Java][Java]][Java-url]
-[![PostgreSQL][PostgreSQL]][PostgreSQL-url]
-[![Docker][Docker]][Docker-url]
-[![Docker-compose][Docker-compose]][Docker-compose-url]
-[![JUnit][JUnit]][JUnit-url]
-[![Intellij][Intellij]][Intellij-url]
-
+[![Java][Java]][Java-url] [![PostgreSQL][PostgreSQL]][PostgreSQL-url] [![Docker][Docker]][Docker-url] [![Docker-compose][Docker-compose]][Docker-compose-url] [![JUnit][JUnit]][JUnit-url] [![Intellij][Intellij]][Intellij-url]
 </div>
 
 <!-- FEATURES -->
@@ -121,11 +113,11 @@ Os testes garantem o comportamento correto e o tratamento adequado de exceções
 
 * Docker e Docker Compose
 
-- Instalar no Windows: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
-- Instalar no Linux: https://docs.docker.com/desktop/linux/install/
-- Instalar no Mac:
-    - Apple Silicon: https://desktop.docker.com/mac/main/arm64/Docker.dmg
-    - Intel: https://desktop.docker.com/mac/main/amd64/Docker.dmg
+    - Instalar no Windows: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+    - Instalar no Linux: https://docs.docker.com/desktop/linux/install/
+    - Instalar no Mac:
+        - Apple Silicon: https://desktop.docker.com/mac/main/arm64/Docker.dmg
+        - Intel: https://desktop.docker.com/mac/main/amd64/Docker.dmg
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
@@ -135,7 +127,7 @@ Os testes garantem o comportamento correto e o tratamento adequado de exceções
 
 #### Opção 1: Download .zip
 
-1. Clique em `<> Code` → Download ZIP
+1. Clique em `<> Code` → Download ZIP e salve na pasta Downloads
 2. Extraia o arquivo
 3. Abra um terminal
 4. Navegue até a pasta do projeto:  
@@ -207,15 +199,24 @@ Link do Projeto: https://github.com/MattheusMorais/word-processing-service
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [issues-shield]: https://img.shields.io/github/issues/MattheusMorais/word-processing-service.svg?style=for-the-badge
 [issues-url]: https://github.com/MattheusMorais/word-processing-service/issues
 [license-shield]: https://img.shields.io/github/license/MattheusMorais/word-processing-service.svg?style=for-the-badge
 [license-url]: https://github.com/MattheusMorais/word-processing-service/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/mattheus-morais/
+[product-screenshot]: images/screenshot.png
+[Java]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/
+[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 [Docker-url]: https://www.docker.com/
+[Docker-compose]: https://img.shields.io/badge/Docker%20Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white
 [Docker-compose-url]: https://www.docker.com/
+[PostgreSQL]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [PostgreSQL-url]: https://www.postgresql.org/
+[JUnit]:https://img.shields.io/badge/Junit5-25A162?style=for-the-badge&logo=junit5&logoColor=white
 [JUnit-url]: https://junit.org/
+[Intellij]: https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white
 [Intellij-url]: https://www.jetbrains.com/
+[logo-img]: https://github.com/MattheusMorais/word-processing-service/blob/main/images/word-processing-service-logo.png
