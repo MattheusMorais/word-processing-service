@@ -113,11 +113,11 @@ Os testes garantem o comportamento correto e o tratamento adequado de exceções
 
 * Docker e Docker Compose
 
-    - Instalar no Windows: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
-    - Instalar no Linux: https://docs.docker.com/desktop/linux/install/
-    - Instalar no Mac:
-        - Apple Silicon: https://desktop.docker.com/mac/main/arm64/Docker.dmg
-        - Intel: https://desktop.docker.com/mac/main/amd64/Docker.dmg
+    - Windows/Mac: https://www.docker.com/products/docker-desktop/
+    - Linux: https://docs.docker.com/desktop/setup/install/linux/
+     
+* Git
+    - Windows/Linux/Mac: https://git-scm.com/install/
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
@@ -125,22 +125,8 @@ Os testes garantem o comportamento correto e o tratamento adequado de exceções
 
 💡 Execute os comandos **em negrito** no terminal em sequência (pode copiar e colar).
 
-#### Opção 1: Download .zip
-
-1. Clique em `<> Code` → Download ZIP e salve na pasta Downloads
-2. Extraia o arquivo
-3. Abra um terminal
-4. Navegue até a pasta do projeto:  
-   **cd Downloads\word-processing-service-main\word-processing-service-main**
-5. Inicie o banco de dados:  
-   **docker compose up -d db**
-6. Execute a aplicação:  
-   **docker compose run --rm app**
-
-#### Opção 2: Usando git
-
 1. Abra um terminal e execute:  
-   **git clone git@github.com:MattheusMorais/word-processing-service.git**
+   **git clone https://github.com/MattheusMorais/word-processing-service.git**
 2. Navegue até a pasta:  
    **cd word-processing-service**
 3. Inicie o banco de dados:  
