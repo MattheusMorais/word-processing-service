@@ -112,13 +112,13 @@ The tests ensure correct behavior and proper exception handling for invalid inpu
 
 ### 📋 Prerequisites
 
-* Docker & Docker compose
+* Docker e Docker Compose
 
-    - Link para instalar no Windows: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module
-    - Link para instalar no Linux: https://docs.docker.com/desktop/linux/install/
-    - Link para instalar no Mac:
-        - Apple Silicon: https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module
-        - Intel Chip: https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module
+    - Windows/Mac: https://www.docker.com/products/docker-desktop/
+    - Linux: https://docs.docker.com/desktop/setup/install/linux/
+     
+* Git
+    - Windows/Linux/Mac: https://git-scm.com/install/
 
 
   <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -129,17 +129,7 @@ The tests ensure correct behavior and proper exception handling for invalid inpu
 
 💡 Run the following **bold** commands in your terminal in sequence(you can copy and paste them).
 
-- #### Option 1: Download .zip:
-1. Click on <>Code in this page -> Download ZIP and save it to your Downloads folder
-2. Extract the .zip file
-3. Open a terminal
-4. Navigate to the project folder: **cd Downloads\word-processing-service-main\word-processing-service-main**
-5. Start container database: **docker compose up -d db**
-6. Run the application: **docker compose run --rm app**
-
-
-- #### Option 2: Using git
-1. Open a terminal and paste: **git clone git@github.com:MattheusMorais/word-processing-service.git**
+1. Open a terminal and paste: **git clone https://github.com/MattheusMorais/word-processing-service.git**
 2. Navigate to the project folder: **cd word-processing-service**
 3. Start container database: **docker compose up -d db**
 4. Run the application: **docker compose run --rm app**
